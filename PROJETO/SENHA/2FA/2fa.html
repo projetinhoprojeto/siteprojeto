@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Autenticação de Dois Fatores</title>
+    <link rel="stylesheet" href="2fa.css">
+</head>
+<body>
+    <div class="container" id="container">
+        <h2>Autenticação de Dois Fatores</h2>
+        <form id="formulario-auth" action="2fa.php" method="post">
+            
+            <div id="container-pergunta">
+                <!-- Pergunta será inserida aqui pelo JavaScript -->
+            </div>
+            <input type="text" id="resposta" placeholder="Digite sua resposta" required>
+            <button type="submit">Enviar</button>
+        </form>
+        <div id="mensagem"></div>
+    </div>
+    <header class="cabecalho">
+        <div class="logo">
+            <img src="IMAGENS/logoborda.png" alt="Logo PetZone">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="../index.html">VOLTAR AO HOME</a></li>
+            </ul>
+        </nav>
+        <div class="login-usuario">
+            <a href="#"><img src="IMAGENS/Login.jpg" alt="Perfil"></a>
+        </div>
+        <div class="acessibilidade">
+            <button id="botao-tema">Alterar Tema</button>
+            <button id="aumentar-fonte">A+</button>
+            <button id="diminuir-fonte">A-</button>
+        </div>
+    </header>
+
+    <script src="2fa.js"></script>
+    <script>
+
+        const params = new URLSearchParams(window.location.search);
+        const email = params.post('email');
+        document.getElementById('email').value = email;
+    </script>
+</body>
+</html>

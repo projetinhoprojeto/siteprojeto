@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="esquecisenha.css">
+    <title>Esqueci senha</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+      <header class="cabecalho">
+        <div class="logo">
+            <img src="IMAGENS/logoborda.png" alt="Logo PetZone" height= "50" width = "50">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="../index.html" class="home"></a></li>
+            </ul>
+        </nav>
+        <div class="login-usuario">
+            <a href="#"><img src="IMAGENS/login.jpg" alt="Perfil" height= "20"></a>
+        </div>
+        <div class="acessibilidade">
+            <button id="botao-tema"><i class="bi bi-brightness-high"></i></button>
+            <button id="aumentar-fonte">A+</button>
+            <button id="diminuir-fonte">A-</button>
+        </div>
+    </header>
+    <main>
+        <form action="../backend/email.php" method="post" id="formEsqueciSenha">
+        <h2>Esqueci minha senha</h2>
+    
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required placeholder="Digite seu e-mail cadastrado">
+        
+        <input type="submit" value="Enviar">
+        
+        <div id="mensagem"></div>
+        <!-- Feedback ao usuário -->
+        <p>Se o e-mail estiver registrado</p>
+        <p>Você passará pela autenticação</p>
+        
+        
+        
+        <a href="../../LOGIN/login.html" class="alter"><i class="bi bi-arrow-bar-left"></i>Voltar para login</a>
+        </form>
+
+    </main>
+    <script>
+          // Função para processar o envio do formulário via AJAX
+          $(document).ready(function() {
+            $('#formEsqueciSenha').on('submit', function(e) {
+                e.preventDefault(); // Previne o envio do formulário tradicional
+                
+                var email = $('#email').val(); // Obtém o valor do campo de e-mail
+                
+                // Envia a requisição AJAX para o PHP
+                $.ajax({
+                    type: 'POST',
+                    url: '../backend/email.php',
+                    data: { email: email },
+                    success: function(response) {
+                        if (response == 'success') {
+                            // Redireciona para altersenha.html se o e-mail for válido
+                            window.location.href = '../2fa/2fa.html';
+                        } else {
+                            // Exibe a mensagem de erro se o e-mail não estiver registrado
+                            $('#mensagem').html('E-mail não registrado.').css('color', 'red');
+                        }
+                    }
+                });
+            });
+        });
+
+        let fontSize = 18; 
+document.getElementById('aumentar-fonte').addEventListener('click', function() {
+    if (fontSize < 30) { 
+    fontSize += 2;
+    document.body.style.fontSize = fontSize + 'px';
+    }
+});
+
+document.getElementById('diminuir-fonte').addEventListener('click', function() {
+    if (fontSize > 10) { 
+        fontSize -= 2;
+        document.body.style.fontSize = fontSize + 'px';
+    }
+});
+
+// Seleciona o botão de tema e o corpo do documento
+let tema = document.getElementById('botao-tema');
+
+// Função para aplicar o tema com base no localStorage
+function aplicarTema() {
+    if (localStorage.getItem('tema') === 'escuro') {
+        document.body.classList.add('tema-escuro');
+        tema.innerHTML = '<i class="bi bi-moon-stars"></i>';
+    } else {
+        document.body.classList.remove('tema-escuro');
+        tema.innerHTML = '<i class="bi bi-brightness-high"></i>';
+    }
+}
+
+
+aplicarTema();
+
+
+tema.addEventListener('click', function () {
+    document.body.classList.toggle('tema-escuro');
+    
+    
+    if (document.body.classList.contains('tema-escuro')) {
+        tema.innerHTML = '<i class="bi bi-moon-stars"></i>';
+        localStorage.setItem('tema', 'escuro');  // Salva o tema escuro no localStorage
+    } else {
+        tema.innerHTML = '<i class="bi bi-brightness-high"></i>';
+        localStorage.setItem('tema', 'claro');  // Salva o tema claro no localStorage
+    }
+});
+
+
+    </script>
+
+</body>
+</html>

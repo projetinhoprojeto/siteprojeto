@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="alterarsenha.css">  
+    <title>Alterar Senha</title>
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <img src="IMAGENS/logoborda.png" alt="Logo PetZone">
+        </div>
+       
+        <div class="acessibilidade">
+            <button id="botao-tema">Alterar Tema</button>
+            <button id="aumentar-fonte">A+</button>
+            <button id="diminuir-fonte">A-</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <form class="form-box" action="../backend/alterar_senha.php" method="post">
+            <h2>Alterar Senha</h2>
+            
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+            </div>
+
+            <div class="input-group">
+                <label for="nova_senha">Nova Senha</label>
+                <div class="senha-container">
+                    <input type="password" id="nova_senha" name="nova_senha" minlength="8" maxlength="12" placeholder="8 a 12 dígitos" required>
+                    <button type="button" class="toggle-senha" onclick="toggleSenha()">👁️</button>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Alterar Senha</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleSenha() {
+            var senhaInput = document.getElementById('nova_senha');
+            var senhaButton = document.querySelector('.toggle-senha');
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+                senhaButton.innerHTML = "🙈"; // Mudar para ícone de esconder
+            } else {
+                senhaInput.type = "password";
+                senhaButton.innerHTML = "👁️"; // Mudar para ícone de mostrar
+            }
+        }
+
+        // Seleciona o botão de tema e o corpo do documento
+let tema = document.getElementById('botao-tema');
+
+// Função para aplicar o tema com base no localStorage
+function aplicarTema() {
+    if (localStorage.getItem('tema') === 'escuro') {
+        document.body.classList.add('tema-escuro');
+        tema.innerHTML = '<i class="bi bi-moon-stars"></i>';
+    } else {
+        document.body.classList.remove('tema-escuro');
+        tema.innerHTML = '<i class="bi bi-brightness-high"></i>';
+    }
+}
+
+
+aplicarTema();
+
+
+tema.addEventListener('click', function () {
+    document.body.classList.toggle('tema-escuro');
+    
+    
+    if (document.body.classList.contains('tema-escuro')) {
+        tema.innerHTML = '<i class="bi bi-moon-stars"></i>';
+        localStorage.setItem('tema', 'escuro');  // Salva o tema escuro no localStorage
+    } else {
+        tema.innerHTML = '<i class="bi bi-brightness-high"></i>';
+        localStorage.setItem('tema', 'claro');  // Salva o tema claro no localStorage
+    }
+});
+
+let fontSize = 16; // Tamanho de fonte padrão
+
+document.getElementById('aumentar-fonte').addEventListener('click', function() {
+    fontSize += 2;
+    document.body.style.fontSize = fontSize + 'px';
+});
+
+document.getElementById('diminuir-fonte').addEventListener('click', function() {
+    if (fontSize > 10) { // Limite mínimo para evitar texto muito pequeno
+        fontSize -= 2;
+        document.body.style.fontSize = fontSize + 'px';
+    }
+});
+    </script>
+</body>
+</html>
