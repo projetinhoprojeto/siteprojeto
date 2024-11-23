@@ -1,0 +1,406 @@
+:root {
+    --azul-claro: #ADD8E6;
+    --rosa-goiaba: #FF6F61;
+    --amarelo-claro: #FFFACD;
+    --cor-fonte-clara: #333;
+    --cor-fonte-escura: #FFF;
+    --rosa-escuro: #ec3b2b;
+    --azul-escuro: #48bde4;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 16px; /* Tamanho de fonte inicial */
+}
+
+ 
+
+.cabecalho {
+    padding: 0rem 7%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: var(--azul-claro);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Adiciona sombra para um efeito mais sofisticado */
+}
+
+.logo img {
+    height:105px; 
+    width: auto;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 50px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: var(--cor-fonte-clara);
+    font-weight: bold;
+    transition: color 0.2s ease; /* Transição suave ao passar o mouse */
+}
+
+.menu ul li a:hover {
+    color: var(--rosa-goiaba); /* Cor de destaque ao passar o mouse */
+}
+
+
+.login-usuario a {
+    text-decoration: none;
+    color: var(--cor-fonte-clara);
+    font-weight: bold;
+}
+
+.login-usuario, .acessibilidade {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+.login-usuario img {
+    height: 40px; /* Tamanho do ícone de perfil */
+    width: 40px;
+    border-radius: 50%; /* Torna o ícone circular */
+   
+}
+
+.acessibilidade button {
+    background: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    color: var(--cor-fonte-clara);
+}
+/* <i class="bi bi-list"></i> */
+#button-barra{
+    /* inicial */ 
+    display: none;
+    z-index: 501;
+}
+#button-barra {
+    background: none;
+    padding: 2px;
+    border: 0;
+    cursor: pointer;
+}
+#button-barra i {
+    font-size: 40px;
+    transition: 1s;
+}
+#button-barra i:hover {
+    color: #ec3b2b;
+}
+
+header i {
+    font-size: 35px;
+    margin-right: 10px;
+}
+
+.conteudo-principal {
+    text-align: center;
+    padding: 50px 20px;
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    overflow: hidden;
+}
+
+.carrossel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+.conteudo-principal .carrossel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cobre toda a área da div sem distorcer a imagem */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.ativo {
+    opacity: 1;
+}
+
+.bem-vindo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1; 
+    max-width: 80%; 
+}
+
+.bem-vindo h1 {
+    font-size: 4em; 
+    margin-bottom: 20px;
+    color: var(--rosa-goiaba);
+    text-shadow:3px 3px 6px black; 
+    font-weight: 900; 
+    letter-spacing: 2px;
+}
+
+.bem-vindo p {
+    font-size: 2em; 
+    margin: 30px 0;
+    color: black;
+    font-weight: 700; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    line-height: 1.5em; 
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 10px 20px; 
+    border-radius: 10px; 
+    display: inline-block; 
+}
+
+
+.botao-confira {
+    padding: 15px 30px; 
+    background-color: var(--rosa-goiaba);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px; 
+    font-size: 1.3em; 
+    font-weight: 700; 
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px; 
+}
+
+.botao-confira:hover {
+    background-color: #e65a4f; 
+    transform: translateY(-5px); 
+}
+
+.mensagem-acesso {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 100;
+}
+
+.mensagem-acesso p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: var(--cor-fonte-clara);
+}
+
+.mensagem-acesso a.botao {
+    background-color: var(--rosa-goiaba);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.mensagem-acesso a.botao:hover {
+    background-color: #e65a4f;
+}
+
+
+.redes-sociais {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.redes-sociais a img {
+    height: 40px;
+    width: auto;
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+}
+
+.redes-sociais a:hover img {
+    transform: scale(1.1);
+}
+.rodape {
+    background-color: var(--azul-claro);
+    color: var(--cor-fonte-clara);
+    text-align: center;
+    padding: 10px 0;
+}
+.tema-escuro {
+    background-color: var(--cor-fonte-clara);
+    color: #f0f0f0;
+}
+
+.tema-escuro .cabecalho {
+    background-color: var(--cor-fonte-clara);
+    color: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+}
+.tema-escuro .bem-vindo h1{
+    color: #ec3b2b;
+}
+.tema-escuro .acessibilidade button{
+    color: white;
+}
+.tema-escuro .menu ul li a {
+    color: #f0f0f0;
+}
+.tema-escuro .menu ul li a:hover{
+    color: var(--rosa-escuro);
+}
+.tema-escuro .login-usuario a img {
+    filter: brightness(0.6); /* Deixa o ícone de login mais escuro */
+}
+
+.tema-escuro .botao-confira{
+    background-color: var(--rosa-escuro) ;
+    color: rgb(0, 0, 0);
+}
+.tema-escuro .rodape {
+    background-color: #1f1f1f;
+    color: #f0f0f0;
+}
+
+.tema-escuro .redes-sociais a img {
+    filter: brightness(0.9); 
+}
+.tema-escuro .mensagem-acesso {
+    background-color: var(--cor-fonte-clara);
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tema-escuro .mensagem-acesso p {
+    color: white;
+}
+
+.tema-escuro .mensagem-acesso a.botao {
+    background-color: var(--rosa-escuro);
+    color: rgb(0, 0, 0);
+}
+
+.tema-escuro .mensagem-acesso a.botao:hover {
+    background-color: #ca3a30;
+}
+
+
+
+/* Responsividade para dispositivos até 930px */
+@media (max-width: 930px) {
+    body {
+        overflow-x: hidden; /* Impede o arrasto horizontal */
+    }
+
+    .cabecalho {
+        padding: 0 5%;
+    }
+
+    .menu ul {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #button-barra {
+        display: block;
+    }
+
+    .bem-vindo h1 {
+        font-size: 40px; /* Ajuste do tamanho da fonte */
+    }
+
+    .bem-vindo p {
+        font-size: 30px; /* Ajuste do tamanho da fonte */
+    }
+
+    .botao-confira {
+        font-size: 24px; /* Ajuste do tamanho da fonte */
+        padding: 12px 24px; /* Ajuste do padding */
+    }
+
+    .mensagem-acesso {
+        position: fixed; /* Mantém a mensagem fixa na parte inferior da tela */
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px; /* Ajuste do padding */
+        text-align: center;
+        z-index: 100;
+        display: block; /* Garante que a mensagem apareça */
+    }
+
+    .mensagem-acesso p {
+        font-size: 24px; /* Ajuste do tamanho da fonte */
+    }
+
+    .mensagem-acesso a.botao {
+        font-size: 24px; /* Ajuste do tamanho da fonte */
+        padding: 12px 24px; /* Ajuste do padding */
+    }
+}
+
+/* Responsividade específica para dispositivos menores como o iPhone 14 Pro Max */
+@media (max-width: 430px) {
+    .bem-vindo h1 {
+        font-size: 40px; /* Ajuste do tamanho da fonte */
+    }
+
+    .bem-vindo p {
+        font-size: 30px; /* Ajuste do tamanho da fonte */
+    }
+
+    .botao-confira {
+        font-size: 20px; /* Ajuste do tamanho da fonte */
+        padding: 10px 20px; /* Ajuste do padding */
+    }
+
+    .mensagem-acesso {
+        padding: 20px; /* Reduz o padding para telas menores */
+    }
+
+    .mensagem-acesso p {
+        font-size: 14px; /* Ajuste do tamanho da fonte */
+    }
+
+    .mensagem-acesso a.botao {
+        font-size: 14px;
+        padding: 10px 20px; /* Ajuste do padding */
+    }
+}
