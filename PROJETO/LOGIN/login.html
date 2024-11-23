@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="PT-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="login.css">
+    <title>Login do Usuário</title>
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <img src="IMAGENS/logoborda.png" alt="Logo PetZone">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="../SITE INICIAL/inicial.html">VOLTAR AO HOME</a></li>
+            </ul>
+        </nav>
+        <div class="login-usuario">
+            <a href="#"><img src="IMAGENS/perfil.jpg" alt="Perfil"></a>
+        </div>
+        <div class="acessibilidade">
+            <button id="botao-tema"><i class="bi bi-brightness-high"></i></button>
+            <button id="aumentar-fonte">A+</button>
+            <button id="diminuir-fonte">A-</button>
+        </div>
+    </header>
+
+    <div class="main-login">
+        <div class="left-login">
+            <h1>Faça seu login ou cadastre-se para ajudar o seu amiguinho!</h1>
+        </div>
+        <div class="right-login">
+            <form class="card-login" method="POST" action="login.php" id="formLogin">
+                <h1>Login</h1>
+                      <div class="textfield">
+                      <label for="E-mail">E-mail</label>
+                      <input type="email" name="email" placeholder="E-mail" id="email" required>
+                   </div>
+                    <div class="textfield">
+                    <label for="Senha">Senha</label> 
+                    <input type="password" name="senha" placeholder="Senha" id="senha" minlength="8" maxlength="12" required>
+                 </div>
+                 <div id="mensagem"></div>
+         
+                 <div class = 'esqueci'>
+                    <a href="../SENHA/ESQUECI SENHA/esquecisenha.html">Esqueci minha senha</a>
+             </div>
+             
+             <button type="submit" class="btn-cadastro">ENTRAR</button>
+             <button type="button" class="btn-cadastro" onclick="window.location.href='../CADASTRO/cadastro.html'">cadastre-se</button>
+             <button class="btn-limpar" type="reset">limpar</button>
+         
+            </form>
+            
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

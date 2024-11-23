@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="PT-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <img src="img/logoborda.png" alt="Logo PetZone">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="../SITE INICIAL/inicial.html">VOLTAR AO HOME</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-login">
+        <div class="right-login">
+            <form id="login-form" class="card-login">
+                <h1>Login</h1>
+                <div class="textfield">
+                    <label for="nome">Nome de Usuário:</label>
+                    <input type="text" id="nome" name="nome" required><br><br>
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required><br><br>
+                </div>
+                <button type="submit" class="btn-entrar">ENVIAR</button>
+                
+                <div id="mensagem" class="mensagem"></div>
+                
+                <div class='esqueci'>
+                    <a href="">Esqueci minha senha</a>
+                </div>
+            </form>
+        </div>
+    </div>       
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+            
+            const formData = new FormData(this);
+            fetch('processa_form.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const mensagemDiv = document.getElementById('mensagem');
+                mensagemDiv.textContent = ''; // Limpa a mensagem anterior
+
+                if (data.success) {
+                    // Redireciona para index.html se o login for bem-sucedido
+                    window.location.href = 'index.html';
+                } else {
+                    // Exibe a mensagem de erro
+                    mensagemDiv.textContent = data.message;
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+        });
+    </script>
+</body>
+</html>
+

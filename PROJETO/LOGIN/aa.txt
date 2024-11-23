@@ -1,0 +1,75 @@
+< ?php
+// Configurações do banco de dados
+$host = 'localhost';
+$dbname = 'formulario_db';
+$user = 'root';
+$pass = '';
+
+// Conectar ao banco de dados
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro ao conectar ao banco de dados: " . $e->getMessage());
+}
+
+// Função para validar os dados do formulário
+function validarDados($nome, $senha) {
+    if (empty($nome) || empty($senha)) {
+        return "Todos os campos são obrigatórios.";
+    }
+    
+    if (strlen($nome) < 3) {
+        return "O nome de usuário deve ter pelo menos 3 caracteres.";
+    }
+
+    if (strlen($senha) < 6) {
+        return "A senha deve ter pelo menos 6 caracteres.";
+    }
+
+    return true;
+}
+
+// Capturar dados do formulário
+$nome = $_POST['nome'];
+$senha = $_POST['senha'];
+
+// Validar os dados
+$validacao = validarDados($nome, $senha);
+if ($validacao !== true) {
+    die($validacao);  // Se a validação falhar, exibe a mensagem de erro
+}
+
+// Criptografar a senha
+$senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+// Inserir os dados no banco de dados
+try {
+    $sql = "INSERT INTO usuarios (nome, senha) VALUES (:nome, :senha)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':nome' => $nome,
+        ':senha' => $senhaHash
+    ]);
+    echo "Usuário cadastrado com sucesso!";
+} catch (PDOException $e) {
+    die("Erro ao cadastrar usuário: " . $e->getMessage());
+}
+?>
+
+
+
+
+banco 
+
+CREATE DATABASE formulario_db;
+
+USE formulario_db;
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    senha VARCHAR(255) NOT NULL
+);
+
+
