@@ -1,0 +1,202 @@
+:root {
+    --azul-claro: #ADD8E6;
+    --rosa-goiaba: #FF6F61;
+    --amarelo-claro: #FFFACD;
+    --cor-fonte-clara: #1f1f1f;
+    --cor-fonte-escura: #FFF;
+    --rosa-escuro: #ec3b2b;
+    --azul-escuro: #48bde4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.cabecalho {
+    padding: 0rem 7%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100; 
+    background: var(--azul-claro);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    height: 105px;
+    width: auto;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 50px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: var(--cor-fonte-clara);
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.menu ul li a:hover {
+    color: var(--rosa-goiaba); 
+}
+
+.login-usuario a {
+    text-decoration: none;
+    color: var(--cor-fonte-clara);
+    font-weight: bold;
+}
+
+.login-usuario,
+.acessibilidade {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-usuario a img {
+    max-width: 55px;
+    max-height: 55px;
+    min-width: 35px;
+    min-height: 35px;
+    border-radius: 50%; /* Torna o ícone circular */
+}
+
+.acessibilidade button {
+    background: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    color: var(--cor-fonte-clara);
+}
+/* <i class="bi bi-list"></i> */
+#button-barra{
+    /* inicial */ 
+    display: none;
+    z-index: 501;
+}
+#button-barra {
+    background: none;
+    padding: 2px;
+    border: 0;
+    cursor: pointer;
+}
+#button-barra i {
+    font-size: 40px;
+    transition: 1s;
+}
+#button-barra i:hover {
+    color: #ec3b2b;
+}
+
+header i {
+    font-size: 35px;
+    margin-right: 10px;
+}
+
+body {
+    background-image: url('IMAGENS/backgroundagend.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 110px; /* Adiciona padding superior suficiente para o cabeçalho */
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+button {
+    background-color: #4d7cff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.tema-escuro{
+    background-image: url(IMAGENS/backgroundagen-escuro.jpg);
+}
+.tema-escuro .cabecalho {
+    background-color: var(--cor-fonte-clara);
+    color: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+}
+.tema-escuro .acessibilidade button{
+    color: white;
+}
+.tema-escuro .menu ul li a {
+    color: #f0f0f0;
+}
+.tema-escuro .menu ul li a:hover{
+    color: var(--rosa-escuro);
+}
+.tema-escuro .login-usuario a img {
+    filter: brightness(0.6); /* Deixa o ícone de login mais escuro */
+}
+.tema-escuro button{
+    color: black;
+}
+
+@media (max-width: 700px){
+    .home::before{
+        content: 'HOME';
+    }
+    .acessibilidade{
+        margin-left:0px;
+    }
+    .acessibilidade button{
+        margin: 0 -10px;
+    }
+    .logo img{
+        height: 70px;
+    }
+
+    .login-usuario a img {
+        max-width: 35px;
+        max-height: 35px;
+    }
+}
